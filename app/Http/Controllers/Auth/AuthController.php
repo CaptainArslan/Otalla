@@ -85,7 +85,7 @@ class AuthController extends Controller
                 //code User exist
                 $userData = User::where('email', $request->email)->get();
                 $orderData = Order::where('order_number',$request->ordernumber)->get();
-                if(count($userData) > 0 && count($orderData) > 0){
+                if(count($userData) > 0 && count($orderData) > 0 && $orderData[0]->user_id == $userData[0]->id ){
                     Session::put('user_id',$userData[0]->id);
                     Session::put('user_email',$userData[0]->email);
                     Session::put('order_number',$orderData[0]->order_number);
