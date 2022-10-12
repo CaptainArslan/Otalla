@@ -34,9 +34,9 @@
         <?php 
             $data = json_decode($catalog->catalog_path);
         ?>
-        <div class="col-4 mt-4">
-            <div class="card">
-                <!-- <img class="card-img-top" src="{{ asset('storage') }}\{{$data[0]->download_link}}" alt="Card image cap"> -->
+        <div class="col-3 mt-4">
+            <div class="card d-flex" style="justify-content: center; align-items: center;" >
+                <embed src="{{  asset('storage') }}\{{$data[0]->download_link }}" width="100%" height="250" alt="pdf" />
                 <a href="{{ asset('storage') }}\{{$data[0]->download_link}}" download="{{ asset('storage') }}\{{$data[0]->download_link}}">{{$data[0]->original_name}}</a>
                 <!-- <img class="card-img-top" src="{{ asset('storage/catalogs/October2022/1.jpeg') }}" alt="Card image cap"> -->
                 <div class="card-body">

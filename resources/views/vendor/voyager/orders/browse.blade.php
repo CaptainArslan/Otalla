@@ -49,6 +49,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Import</label>
                                 <input type="file" class="form-control" name="file" id="exampleInputEmail1" aria-describedby="choose file">
+                                <span class="text-danger"> @error('file'){{$message}} @enderror </span>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-  public function store()
+  public function store(Request $request)
   {
-    
+    $request->validate([
+      'file' => 'required|mimes:xlsx,csv,xls'
+    ]);
     Excel::import(new OrderImport,request()->file('file'));
              
     return back();
