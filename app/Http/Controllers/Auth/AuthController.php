@@ -85,11 +85,13 @@ class AuthController extends Controller
                 //code User exist
                 $userData = User::where('email', $request->email)->get();
                 $orderData = Order::where('order_number',$request->ordernumber)->get();
-                // return $orderData[0]->order_number;
-                Session::put('user_id',$userData[0]->id);
-                Session::put('user_email',$userData[0]->email);
-                Session::put('order_number',$orderData[0]->order_number);
-                // return Session('order_number');
+                if(count($userData) > 0 && count($orderData) > 0){
+                    Session::put('user_id',$userData[0]->id);
+                    Session::put('user_email',$userData[0]->email);
+                    Session::put('order_number',$orderData[0]->order_number);
+                }else{
+                    return redirect()->back()->with('fail', 'The given order number is associated with other Email');
+                }
                 return redirect('dashboard');
             }
         } else {
