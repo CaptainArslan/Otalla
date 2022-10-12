@@ -22,7 +22,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        if(session('user_email') != ''){
+        if(session('user_email') != '' && session('user_email') != ''){
             return redirect('dashboard');
         }else{
             return view('auth.login');
@@ -89,10 +89,10 @@ class AuthController extends Controller
                     Session::put('user_id',$userData[0]->id);
                     Session::put('user_email',$userData[0]->email);
                     Session::put('order_number',$orderData[0]->order_number);
+                    return redirect('dashboard');
                 }else{
                     return redirect()->back()->with('fail', 'The given order number is associated with other Email');
                 }
-                return redirect('dashboard');
             }
         } else {
             // order not exist
@@ -116,6 +116,7 @@ class AuthController extends Controller
      */
     public function dashboard()
     {
+        dd('dashboard');
         if (Auth::check()) {
             return view('dashboard');
         }
